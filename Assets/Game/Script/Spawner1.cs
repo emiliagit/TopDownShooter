@@ -6,7 +6,7 @@ public class Spawner1 : MonoBehaviour
 {
     //spawn de enemigos en mapa
     //public GameObject enemyPrefab;
-    public float spawnInterval = 8.0f; 
+    //public float spawnInterval = 2f; 
     //private float timeSinceLastSpawn = 0.0f;
 
    
@@ -19,11 +19,11 @@ public class Spawner1 : MonoBehaviour
    
 
     bool spawnerActive = true;
-    float delay;
+    public float delay;
 
     private void Start()
     {
-        delay = 10f;
+        //delay = 10f;
         spawnerActive = true;
         StartCoroutine(timer());
     }
