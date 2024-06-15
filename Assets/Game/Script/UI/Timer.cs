@@ -6,10 +6,10 @@ using UnityEngine.SceneManagement;
 
 public class Timer : MonoBehaviour
 {
-    private int min = 7;
-    private int seg = 30;
+    private int min = 0;
+    private int seg = 10;
 
-
+    private PlayerLife lifePlayer;
 
     [SerializeField] TextMeshProUGUI tiempo;
     //private int life = 100;
@@ -29,14 +29,16 @@ public class Timer : MonoBehaviour
         if (EnMarcha)
         {
             restante -= Time.deltaTime;
-            if (restante < 1)
-            {
-                EnMarcha = true;
-                SceneManager.LoadScene("Derrota");
 
+            //if (restante < 1 && lifePlayer.hp > 0)
+            //{
+            //    EnMarcha = true;
+            //    //SceneManager.LoadScene("Victory");
+            //    Debug.Log("Juego ganado");
 
-                Cursor.lockState = CursorLockMode.None;
-            }
+            //    //Cursor.lockState = CursorLockMode.None;
+            //}
+           
 
 
             int tempMin = Mathf.FloorToInt(restante / 60);
