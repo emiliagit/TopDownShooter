@@ -19,9 +19,14 @@ public class Enemy : MonoBehaviour
         agent.destination = player.position;
     }
 
-    private void OnTriggerEnter(Collider other)
+    //private void OnTriggerEnter(Collider other)
+    //{
+        
+    //}
+
+    private void OnCollisionEnter(Collision collision)
     {
-        if(other.gameObject.TryGetComponent(out PlayerLife player))
+        if (collision.gameObject.TryGetComponent(out PlayerLife player))
         {
             player.RecibirDanio(10);
         }
