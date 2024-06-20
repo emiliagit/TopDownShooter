@@ -8,7 +8,7 @@ public class EnemyLife : MonoBehaviour
 
 
     public GameObject deathEffect;
-    public Transform deathEffectPoint;
+  
 
 
     private void Start()
@@ -32,15 +32,17 @@ public class EnemyLife : MonoBehaviour
     }
 
 
-    protected void Die()
+    private void Die()
     {
         if (deathEffect != null)
         {
-            Instantiate(deathEffect, deathEffectPoint.position, deathEffectPoint.rotation);
+            Instantiate(deathEffect, transform.position, transform.rotation);
             Debug.Log("animacion muerte instanciada");
         }
 
         Destroy(gameObject);
     }
+
+    
 
 }

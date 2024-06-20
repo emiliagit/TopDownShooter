@@ -41,7 +41,7 @@ public class EnemyAttack1 : MonoBehaviour
         Vector3 directionToPlayer = (player.position - projectileSpawnPoint.position).normalized;
 
         // Instanciar el proyectil en el punto de spawn
-        GameObject projectile = Instantiate(projectilePrefab, projectileSpawnPoint.position, Quaternion.identity);
+        GameObject projectile = Instantiate(projectilePrefab, projectileSpawnPoint.position, Quaternion.LookRotation(directionToPlayer));
 
         // Configurar la dirección y velocidad del proyectil
         Rigidbody rb = projectile.GetComponent<Rigidbody>();

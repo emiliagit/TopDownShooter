@@ -17,9 +17,11 @@ public class FirePlayer : MonoBehaviour
     }
 
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    
+
+    private void OnTriggerEnter(Collider other)
     {
-        if (!collision.gameObject.CompareTag("Player"))
+        if (!other.gameObject.CompareTag("Player"))
         {
             GameObject fire = Instantiate(firePrefab, transform.position, Quaternion.identity);
             Destroy(fire, 1f);
@@ -27,10 +29,11 @@ public class FirePlayer : MonoBehaviour
             Destroy(gameObject);
         }
 
-        if (collision.gameObject.TryGetComponent(out EnemyLife enemy))
+        if (other.gameObject.TryGetComponent(out EnemyLife enemy))
         {
-            enemy.TakeDamage(10);
+            enemy.TakeDamage(1);
             Debug.Log("daño de 10 a enemigo");
         }
+       
     }
 }

@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 996619836906501103}
   - component: {fileID: 7550150756192435234}
   - component: {fileID: 5565017497107661307}
+  - component: {fileID: 912436701422056037}
   m_Layer: 0
   m_Name: bullet
   m_TagString: Untagged
@@ -76,12 +77,25 @@ SphereCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.07
+  m_Radius: 0.1
   m_Center: {x: -0.014208674, y: 0.0028469246, z: 0.2878196}
+--- !u!114 &912436701422056037
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 476985762935253118}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2058842c9831568418beec08e8a969a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  firePrefab: {fileID: 100002, guid: 99c73c92ac40473459640b165473206f, type: 3}
 --- !u!1001 &1018864781742393992
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -152,7 +166,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3734861025790442325, guid: 303fe98f532f0e94ab2a1b933ee2528f, type: 3}
       propertyPath: lengthInSec
-      value: 0.7
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3734861025790442325, guid: 303fe98f532f0e94ab2a1b933ee2528f, type: 3}
       propertyPath: InitialModule.startSpeed.scalar
