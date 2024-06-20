@@ -13,7 +13,7 @@ public class EnemyLife : MonoBehaviour
 
     private void Start()
     {
-        currentHealth = 5;
+        //currentHealth = 5;
     }
 
 

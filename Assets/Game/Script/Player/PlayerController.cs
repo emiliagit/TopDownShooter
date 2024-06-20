@@ -9,46 +9,66 @@ public class PlayerController : MonoBehaviour
     public Camera mainCamera;
     public LayerMask groundLayer;
 
+    public CharacterController controller;  // El controlador de carácter del jugador
+    public Transform cameraTransform;
+
+    public float turnSmoothTime = 0.1f;     // Suavidad de rotación
+    float turnSmoothVelocity;
+
     //private bool isMoving = false;
     void Update()
     {
+        //MovePlayer();
+        //RotateTowardsMouse();
+
+
+    }
+    private void FixedUpdate()
+    {
         MovePlayer();
-        Aim();
-
-
+        RotateTowardsMouse();
     }
     void MovePlayer()
     {
-        float moveHorizontal = Input.GetAxis("Horizontal");
-        float moveVertical = Input.GetAxis("Vertical");
+        float horizontal = Input.GetAxisRaw("Horizontal");
+        float vertical = Input.GetAxisRaw("Vertical");
+        Vector3 direction = new Vector3(horizontal, 0f, vertical).normalized;
 
-        Vector3 movement = new Vector3(moveHorizontal, 0, moveVertical);
-
-        transform.Translate(movement * speed * Time.deltaTime, Space.World);
-
-    }
-
-    private (bool success, Vector3 position) GetMousePosition()
-    {
-        var ray = mainCamera.ScreenPointToRay(Input.mousePosition);
-
-        if (Physics.Raycast(ray, out var hitInfo, Mathf.Infinity, groundLayer))
-            return (success: true, position: hitInfo.point);
-        else
-            return (success: false, position: Vector3.zero);
-    }
-
-    private void Aim()
-    {
-        var (success, position) = GetMousePosition();
-
-        if (success)
+        if (direction.magnitude >= 0.1f)
         {
-            var direction = position - transform.position;
+            // Calcular el ángulo objetivo en base a la dirección de la cámara
+            float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg + cameraTransform.eulerAngles.y;
+            float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, turnSmoothTime);
 
-            direction.y = 0f;
+            // Rotar al jugador hacia la dirección objetivo
+            transform.rotation = Quaternion.Euler(0f, angle, 0f);
 
-            transform.forward = direction;
+            // Mover al jugador en la dirección de la cámara
+            Vector3 moveDirection = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
+            controller.Move(moveDirection.normalized * speed * Time.deltaTime);
+        }
+
+    }
+
+    void RotateTowardsMouse()
+    {
+        Vector3 mousePosition = Input.mousePosition;
+
+        Ray ray = mainCamera.ScreenPointToRay(mousePosition);
+        RaycastHit hit;
+
+        if (Physics.Raycast(ray, out hit, Mathf.Infinity, groundLayer))
+        {
+            Vector3 targetPosition = hit.point;
+
+            Vector3 direction = targetPosition - transform.position;
+            direction.y = 0;
+
+            if (direction != Vector3.zero)
+            {
+                Quaternion targetRotation = Quaternion.LookRotation(direction);
+                transform.rotation = targetRotation;
+            }
         }
     }
 }

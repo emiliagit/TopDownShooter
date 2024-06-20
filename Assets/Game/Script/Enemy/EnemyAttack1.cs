@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnemyAttack1 : MonoBehaviour
 {
-    public float detectionRadius = 10f; // Radio de detección
+    public float detectionRadius = 6f; // Radio de detección
     public GameObject projectilePrefab; // Prefab del proyectil
     public Transform projectileSpawnPoint; // Punto de spawn del proyectil
     public float fireRate = 1f; // Tasa de disparo (proyectiles por segundo)
