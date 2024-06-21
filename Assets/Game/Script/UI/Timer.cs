@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 public class Timer : MonoBehaviour
 {
     private int min = 1;
-    private int seg = 30;
+    private int seg = 00;
 
     private PlayerLife lifePlayer;
 
