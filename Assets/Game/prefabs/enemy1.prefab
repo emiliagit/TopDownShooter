@@ -151,7 +151,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e6380ed6f3450f4e849ef31cd30bfe9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  detectionRadius: 12
+  detectionRadius: 15
   projectilePrefab: {fileID: 1314083121427075031, guid: 5a3e6f34826b1604d872b5451c884a53, type: 3}
   projectileSpawnPoint: {fileID: 4424991924676762067}
   fireRate: 1

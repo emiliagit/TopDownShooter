@@ -29,14 +29,14 @@ public class PlayerLife : MonoBehaviour
         {
             SceneManager.LoadScene("GameOver");
 
-            Cursor.lockState = CursorLockMode.None;
         }
-        UpdateHealthUI();
-
+      
         if(hp > 0 && temporizador.restante < 1) 
         {
-            Debug.Log("victoria");
+            SceneManager.LoadScene("Victory");
         }
+
+        UpdateHealthUI();
 
     }
 
@@ -46,11 +46,7 @@ public class PlayerLife : MonoBehaviour
         UpdateHealthUI();
     }
 
-    //public void Curar(float heal)
-    //{
-    //    hp += heal;
-    //    UpdateHealthUI();
-    //}
+    
 
     void UpdateHealthUI()
     {
